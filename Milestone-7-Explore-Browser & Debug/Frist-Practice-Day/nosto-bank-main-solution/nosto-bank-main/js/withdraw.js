@@ -11,10 +11,14 @@
 
 document.getElementById("btn-withdraw").addEventListener("click", function () {
   const newWithdrawAmount = getInputFieldValueById("withdraw-field");
+  const previousBalanceTotal = getTextElementValueById("balance-total");
   const previousWithdrawTotal = getTextElementValueById("withdraw-total");
+  if(newWithdrawAmount < 0 || newWithdrawAmount == '' || isNaN(newWithdrawAmount) || newWithdrawAmount > previousBalanceTotal){
+    return alert("Please enter a valid amount")
+  }
   const newWithdrawTotal = previousWithdrawTotal + newWithdrawAmount;
   setTextElementValueById('withdraw-total', newWithdrawTotal);
-  const previousBalanceTotal = getTextElementValueById("balance-total");
+  
   const newBalanceTotal = previousBalanceTotal - newWithdrawAmount;
   setTextElementValueById("balance-total", newBalanceTotal);
 });
